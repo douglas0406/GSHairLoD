@@ -28,7 +28,7 @@ pip install plyfile==1.1 einops==0.8.1 tqdm==4.67.1 scipy==1.15.2 gsplat==1.4.0 
 
 Place 3DGS assets under [`./_3dgs-assets/`](./_3dgs-assets). The donut asset is already included. Additional assets used in the paper are available on [huggingface](https://huggingface.co/datasets/XijieYang/V3DG/tree/main).
 
-To build an asset (e.g., the donut asset at [`./_3dgs-assets/donut/donut/point_cloud/iteration_30000/fused.ply`](./_3dgs-assets/donut/donut/point_cloud/iteration_30000/fused.ply):
+To build an asset (e.g., the donut asset at [`./_3dgs-assets/donut/donut/point_cloud/iteration_30000/fused.ply`](./_3dgs-assets/donut/donut/point_cloud/iteration_30000/fused.ply)):
 
 ```bash
 # For quick testing: set simplification iteration to 16. Note: the first-time gsplat compilation takes a few minutes; build time ~10s.
@@ -66,7 +66,7 @@ Renders (approx. 5 GB per scene) are saved in `./_output/`, along with metrics r
 
 To see all parameters for [`v3dg-select.py`](./v3dg-select.py), refer to `VGSelectConfig` in [`./libraries/cliconfigs.py`](./libraries/cliconfigs.py).
 
-To render all composed scenes used in the paper, check [`./_scripts/`](./_scripts/) ([`./_scripts/v3dg-select.sh`](./_scripts/v3dg-select.sh), [`./_scripts/v3dg-select-ablations.sh`](./_scripts/v3dg-select-ablations.sh), and [`./_scripts/v3dg-select-comparisons.sh`](./_scripts/v3dg-select-comparisons.sh)). For rendering parts in the supplementart video, check [`./_layout-descriptions/_videos/`](./_layout-descriptions/_videos/).
+To render all composed scenes used in the paper, check [`./_scripts/`](./_scripts/) ([`./_scripts/v3dg-select.sh`](./_scripts/v3dg-select.sh), [`./_scripts/v3dg-select-ablations.sh`](./_scripts/v3dg-select-ablations.sh), and [`./_scripts/v3dg-select-comparisons.sh`](./_scripts/v3dg-select-comparisons.sh)). For rendering parts in the supplementary video, check [`./_layout-descriptions/_videos/`](./_layout-descriptions/_videos/).
 
 Core code: [`./v3dg-select.py`](./v3dg-select.py) `vg_selected_gaussians = vg_layout_bundle.selectedGaussians(...)` in `VgSelect()` -> `VgBundle.selectGaussians()`.
 
@@ -77,18 +77,19 @@ The `main` branch contains the exact code used for the reproducibility of all ex
 ## BibTeX Citation
 
 ```bibtex
-@inproceedings{Yang2025V3DG,
+@inproceedings{V3DG,
     author = {Yang, Xijie and Xu, Linning and Jiang, Lihan and Lin, Dahua and Dai, Bo},
     title = {Virtualized 3D Gaussians: Flexible Cluster-based Level-of-Detail System for Real-Time Rendering of Composed Scenes},
-    booktitle = {ACM SIGGRAPH 2025 Conference Papers},
     year = {2025},
-    doi = {10.1145/3721238.3730602},
-    url = {https://doi.org/10.1145/3721238.3730602},
+    isbn = {9798400715402},
     publisher = {Association for Computing Machinery},
-    series = {SIGGRAPH '25}
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3721238.3730602},
+    doi = {10.1145/3721238.3730602},
+    booktitle = {Proceedings of the Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers},
+    articleno = {100},
+    numpages = {11},
+    keywords = {3D Gaussians, Level-of-Detail, Real-Time Rendering, 3D Gaussian Splatting},
+    series = {SIGGRAPH Conference Papers '25}
 }
 ```
-
-## Stargazers Over Time
-
-[![Stargazers over time](https://starchart.cc/city-super/V3DG.svg?variant=adaptive)](https://starchart.cc/city-super/V3DG)
