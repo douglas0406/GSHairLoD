@@ -1,14 +1,32 @@
-# Virtualized 3D Gaussians (V3DG)
+# GSHairLoD: Hair-Optimized Level-of-Detail System for 3D Gaussian Splatting
 
-[**Project Page**](https://xijie-yang.github.io/V3DG/)
+基于[**V3DG**](https://xijie-yang.github.io/V3DG/)的头发场景专用LOD系统。本项目针对头发这类具有线性结构特征的场景，在原V3DG基础上实现了基于特征向量的智能聚类算法。
+## 项目特点
 
-## Virtualized 3D Gaussians: Flexible Cluster-based Level-of-Detail System for Real-Time Rendering of Composed Scenes
+相比原版V3DG，本项目的主要改进：
 
-(SIGGRAPH 2025 Conference Paper)
+### 1. 基于特征向量的头发聚类
 
-[Xijie Yang](https://orcid.org/0009-0009-3076-2595), [Linning Xu](https://eveneveno.github.io/lnxu/), [Lihan Jiang](https://jianglh-whu.github.io/), [Dahua Lin](http://dahua.site/), [Bo Dai](https://daibo.info/)
+- **发根位置提取**：自动识别每根头发的根部位置
+- **几何特征提取**：采样头发曲线上的点位置和切向量，构建高维特征向量
+- **空间预筛选**：使用网格或KNN方法对空间接近的头发预分组，大幅减少计算量
+- **K-means智能聚类**：基于头发相似度进行聚类，保留视觉相似的头发
 
-![](./_media/pipeline.png)
+### 2. 头发数据组织
+
+- 支持 `group_id` 和 `strand_id` 标识头发
+- 按头发进行分组和LOD简化
+- 可视化输出按group_id着色的PLY文件
+
+### 3. 丰富的参数控制
+
+提供多达20+个参数用于精细控制聚类行为，包括：
+- 特征采样点数和采样策略
+- 空间预筛选阈值和方法
+- 聚类减少因子和初始化策略
+- PCA降维选项
+
+详见 [PARAMETERS.md](./PARAMETERS.md)
 
 ## Get Started
 
