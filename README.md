@@ -1,4 +1,4 @@
-# GSHairLoD: Hair-Optimized Level-of-Detail System for 3D Gaussian Splatting
+# GSHairLOD: Hair-Optimized Level-of-Detail System for 3D Gaussian Splatting
 
 基于[**V3DG**](https://xijie-yang.github.io/V3DG/)的头发场景专用LOD系统。本项目针对头发这类具有线性结构特征的场景，在原V3DG基础上实现了基于特征向量的智能聚类算法。
 ## 头发LOD构建流程图
