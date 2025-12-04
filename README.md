@@ -47,6 +47,7 @@ pip install plyfile==1.1 einops==0.8.1 tqdm==4.67.1 scipy==1.15.2 gsplat==1.4.0 
 
 将带有strands_id与group_id的头发ply放在 `./_3dgs-assets/hair/` 目录下。
 提供两个测试文件：
+[Download the data](https://drive.google.com/drive/folders/1BJGFEbNpATuU3RlMIsJMwNbwyoLtmApf?usp=sharing)
 
 
 ### 构建LOD层级
