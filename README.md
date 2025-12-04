@@ -8,7 +8,7 @@
 
 [Xijie Yang](https://orcid.org/0009-0009-3076-2595), [Linning Xu](https://eveneveno.github.io/lnxu/), [Lihan Jiang](https://jianglh-whu.github.io/), [Dahua Lin](http://dahua.site/), [Bo Dai](https://daibo.info/)
 
-![](./_media/framework.jpeg)
+![](./_media/pipeline.jpeg)
 
 ## Get Started
 
