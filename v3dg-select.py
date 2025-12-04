@@ -698,6 +698,7 @@ def VgSelect(vg_select_config: VGSelectConfig):
                 camera=current_camera_instance_1080p
             )
 
+
             if vg_select_config.CALCULATE_PSNR_WITH_NVS_GT:
                 psnr_value_gs_gt = UTILITY.Psnr(
                     rendered_image_gs_1080p[:3] * rendered_image_gs_1080p[3],
@@ -782,7 +783,8 @@ def VgSelect(vg_select_config: VGSelectConfig):
                 UTILITY.SaveImage(
                     rendered_image_gs_1080p,
                     path=vg_select_config.OUTPUT_FOLDER_PATH
-                    / f"images/{i_frame}_gs_count{count_infrustum_gs_1080p}-{count_infrustum_gs_1080p/gs_layout_gaussians.count*100:.2f}%-count{gs_layout_gaussians.count}_flip{flip_value_gs_1080p:.4f}_fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
+                    #/ f"images/{i_frame}_gs_count{count_infrustum_gs_1080p}-{count_infrustum_gs_1080p/gs_layout_gaussians.count*100:.2f}%-count{gs_layout_gaussians.count}_flip{flip_value_gs_1080p:.4f}_fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
+                    / f"images/{i_frame}_gs_count{count_infrustum_gs_1080p}-{count_infrustum_gs_1080p/gs_layout_gaussians.count*100:.2f}%-count{gs_layout_gaussians.count}_flip{flip_value_gs_1080p:.4f}.png",
                 )
                 UTILITY.SaveImage(
                     image_flip_gs_1080p,
@@ -793,7 +795,8 @@ def VgSelect(vg_select_config: VGSelectConfig):
                 UTILITY.SaveImage(
                     rendered_image_gs_1080p,
                     path=vg_select_config.OUTPUT_FOLDER_PATH
-                    / f"images/gs_{i_frame}_count{count_infrustum_gs_1080p}-{count_infrustum_gs_1080p/gs_layout_gaussians.count*100:.2f}%-count{gs_layout_gaussians.count}_flip{flip_value_gs_1080p:.4f}_fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
+                    / f"images/{i_frame}_gs_count{count_infrustum_gs_1080p}-{count_infrustum_gs_1080p/gs_layout_gaussians.count*100:.2f}%-count{gs_layout_gaussians.count}_flip{flip_value_gs_1080p:.4f}.png",
+                    # / f"images/gs_{i_frame}_count{count_infrustum_gs_1080p}-{count_infrustum_gs_1080p/gs_layout_gaussians.count*100:.2f}%-count{gs_layout_gaussians.count}_flip{flip_value_gs_1080p:.4f}_fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
                 )
                 UTILITY.SaveImage(
                     image_flip_gs_1080p,
@@ -890,7 +893,8 @@ def VgSelect(vg_select_config: VGSelectConfig):
                         UTILITY.SaveImage(
                             rendered_image_selected,
                             path=vg_select_config.OUTPUT_FOLDER_PATH
-                            / f"images/{i_frame}_vg-tau{int(current_tau)}_count{count_infrustum_vg}-{count_infrustum_vg/count_infrustum_gs_1080p*100:.2f}%-count{count_infrustum_gs_1080p}_flip{flip_value_vg:.4f}_fps{1.0 / (time_duration_vg_select + time_duration_vg_render):.2f}-{(1.0 / (time_duration_vg_select + time_duration_vg_render))/(1.0 / time_duration_gs_render_1080p):.2f}x-fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
+                            #/ f"images/{i_frame}_vg-tau{int(current_tau)}_count{count_infrustum_vg}-{count_infrustum_vg/count_infrustum_gs_1080p*100:.2f}%-count{count_infrustum_gs_1080p}_flip{flip_value_vg:.4f}_fps{1.0 / (time_duration_vg_select + time_duration_vg_render):.2f}-{(1.0 / (time_duration_vg_select + time_duration_vg_render))/(1.0 / time_duration_gs_render_1080p):.2f}x-fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
+                            / f"images/{i_frame}_vg-tau{int(current_tau)}_count{count_infrustum_vg}-count{count_infrustum_gs_1080p}_flip{flip_value_vg:.4f}.png",
                         )
                         UTILITY.SaveImage(
                             image_flip_vg,
@@ -901,7 +905,8 @@ def VgSelect(vg_select_config: VGSelectConfig):
                         UTILITY.SaveImage(
                             rendered_image_selected,
                             path=vg_select_config.OUTPUT_FOLDER_PATH
-                            / f"images/vg-tau{int(current_tau)}_{i_frame}_count{count_infrustum_vg}-{count_infrustum_vg/count_infrustum_gs_1080p*100:.2f}%-count{count_infrustum_gs_1080p}_flip{flip_value_vg:.4f}_fps{1.0 / (time_duration_vg_select + time_duration_vg_render):.2f}-{(1.0 / (time_duration_vg_select + time_duration_vg_render))/(1.0 / time_duration_gs_render_1080p):.2f}x-fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
+                            / f"images/{i_frame}_vg-tau{int(current_tau)}_count{count_infrustum_vg}_flip{flip_value_vg:.4f}.png",
+                            # / f"images/vg-tau{int(current_tau)}_{i_frame}_count{count_infrustum_vg}-{count_infrustum_vg/count_infrustum_gs_1080p*100:.2f}%-count{count_infrustum_gs_1080p}_flip{flip_value_vg:.4f}_fps{1.0 / (time_duration_vg_select + time_duration_vg_render):.2f}-{(1.0 / (time_duration_vg_select + time_duration_vg_render))/(1.0 / time_duration_gs_render_1080p):.2f}x-fps{1.0 / time_duration_gs_render_1080p:.2f}.png",
                         )
                         UTILITY.SaveImage(
                             image_flip_vg,

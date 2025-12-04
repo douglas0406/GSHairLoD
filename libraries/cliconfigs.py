@@ -82,6 +82,45 @@ class VGBuildConfig(BaseConfig):
         self.BUNDLE_CLUSTERS_NPZ_FILENAME: str = "clusters.npz"
         self.BUNDLE_GAUSSIANS_NPZ_FILENAME: str = "gaussians.npz"
 
+        # [root clustering] - 新的聚类参数
+
+        # 是否启用根聚类（特征向量方法）
+        self.ENABLE_ROOT_CLUSTERING: bool = True
+
+        # 最小聚类数量阈值
+        self.ROOT_CLUSTERING_MIN_CLUSTERS: int = 2
+
+        # 聚类初始化策略: "auto" 或 数字字符串
+        self.ROOT_CLUSTERING_INIT_STRATEGY: str = "auto"
+
+        # 聚类减少因子（auto模式下使用）
+        self.ROOT_CLUSTERING_REDUCTION_FACTOR: float = 0.5
+
+        # [spatial prefiltering] - 空间预筛选参数
+
+        # 空间距离阈值
+        self.SPATIAL_THRESHOLD: float = 0.05
+
+        # 空间预筛选方法: "grid" 或 "knn"
+        self.SPATIAL_METHOD: str = "grid"
+
+        # [feature extraction] - 特征提取参数
+
+        # 每根头发采样点数
+        self.FEATURE_SAMPLE_POINTS: int = 64
+
+        # 采样策略: "uniform" 或 "adaptive"
+        self.FEATURE_SAMPLING_STRATEGY: str = "uniform"
+
+        # 是否使用PCA降维
+        self.FEATURE_USE_PCA: bool = False
+
+        # PCA降维后的维度（如果启用PCA）
+        self.FEATURE_PCA_COMPONENTS: int = 128
+
+        # PCA保留的方差比例
+        self.FEATURE_PCA_VARIANCE_RATIO: float = 0.95
+
         # [DEBUG]
 
         self.SAVE_IMAGES_DURING_OPTIMIZATION: bool = False

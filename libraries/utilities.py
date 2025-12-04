@@ -65,6 +65,27 @@ class ExLog:
         ITALICS = "\033[3m"
         UNDERLINED = "\033[4m"
 
+    # 类变量：用于存储日志文件路径
+    log_file_path = None
+
+    @classmethod
+    def set_log_file(cls, file_path: str):
+        """设置日志文件路径"""
+        cls.log_file_path = file_path
+        # 确保目录存在
+        pathlib.Path(file_path).parent.mkdir(parents=True, exist_ok=True)
+        # 写入日志开始标记
+        with open(file_path, 'a', encoding='utf-8') as f:
+            f.write(f"\n{'='*50}\n")
+            f.write(f"日志开始时间: {datetime.datetime.now(tz=zoneinfo.ZoneInfo('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"{'='*50}\n\n")
+
+    @classmethod
+    def clear_log_file(cls):
+        """清空日志文件（如果设置了的话）"""
+        if cls.log_file_path and os.path.exists(cls.log_file_path):
+            open(cls.log_file_path, 'w').close()
+
     def GetFileInfo(stack_offset: int = 0) -> str:
         callerframerecord = inspect.stack()[
             2 + stack_offset
@@ -84,10 +105,23 @@ class ExLog:
             TIME_STR = datetime.datetime.now(
                 tz=zoneinfo.ZoneInfo("Asia/Shanghai")
             ).strftime("%y%m%d-%H%M%S")
-            print(
+            
+            # 控制台输出（保持原有格式和颜色）
+            console_output = (
                 f"{ExLog.Styles.ITALICS}[{title}]\t{ExLog.GetFileInfo()}\t{TIME_STR}{ExLog.Styles.RESET}\n\t"
                 f"{ExLog.Styles.GREEN}{ExLog.Styles.BOLD}{message}{ExLog.Styles.RESET}{ExLog.Styles.RESET}"
             )
+            print(console_output)
+            
+            # 文件输出（去掉颜色控制符）
+            if ExLog.log_file_path:
+                file_output = f"[{title}]\t{ExLog.GetFileInfo()}\t{TIME_STR}\n\t{message}\n"
+                try:
+                    with open(ExLog.log_file_path, 'a', encoding='utf-8') as f:
+                        f.write(file_output)
+                except Exception as e:
+                    # 如果写入文件失败，至少在控制台显示错误信息
+                    print(f"写入日志文件失败: {e}")
 
 
 class ExTimer:
@@ -104,11 +138,24 @@ class ExTimer:
             TIME_STR = datetime.datetime.now(
                 tz=zoneinfo.ZoneInfo("Asia/Shanghai")
             ).strftime("%y%m%d-%H%M%S")
-            print(
+            
+            # 控制台输出（保持原有格式和颜色）
+            console_output = (
                 f"{ExLog.Styles.ITALICS}[TIME]\t{ExLog.GetFileInfo(stack_offset=stack_offset)}\t{TIME_STR}{ExLog.Styles.RESET}\n\t"
                 f"{ExLog.Styles.CYAN}{ExLog.Styles.BOLD}{ExLog.Styles.UNDERLINED}{duration:.6f} s{ExLog.Styles.RESET} "
                 f"{ExLog.Styles.CYAN}{ExLog.Styles.BOLD}{self.label}{ExLog.Styles.RESET}"
             )
+            print(console_output)
+            
+            # 文件输出（去掉颜色控制符）
+            if ExLog.log_file_path:
+                file_output = f"[TIME]\t{ExLog.GetFileInfo(stack_offset=stack_offset)}\t{TIME_STR}\n\t{duration:.6f} s {self.label}\n"
+                try:
+                    with open(ExLog.log_file_path, 'a', encoding='utf-8') as f:
+                        f.write(file_output)
+                except Exception as e:
+                    # 如果写入文件失败，至少在控制台显示错误信息
+                    print(f"写入日志文件失败: {e}")
         return duration
 
     def __enter__(self):
